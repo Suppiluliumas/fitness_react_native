@@ -16,6 +16,10 @@ export default function ExerciseScreen({navigation}) {
         onPress={() => navigation.navigate('ExerciseDiary')}
         title="Go to Exercise Diary"
       />
+      <Button
+        onPress={() => navigation.navigate('ExercisePrograms')}
+        title="Exercise Programs"
+      />
     </View>
   );
 }

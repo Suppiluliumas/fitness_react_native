@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
-import firebaseConfig from "../../Firebase_config";
+import firebaseConfig from "../../Firebase_config.js";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, DataSnapshot } from "firebase/database";
 

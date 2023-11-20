@@ -9,12 +9,15 @@ import ExerciseScreen from "./screens/ExerciseScreen";
 import FoodScreen from "./screens/FoodScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ExerciseDiary from "./screens/ExerciseDiary";
+import ExercisePrograms from "./screens/ExercisePrograms";
+import ChooseProgramPart from "./screens/ChooseProgramPart";
+import DoExercise from "./screens/DoExercise";
 
 //Screen names
 const homeName = "Home";
 const exercisesName = "Exercises";
 const foodsName = "Foods";
-const exerciseDiary = "ExerciseDiary";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,6 +58,9 @@ export default function MainContainer() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="ExerciseDiary" component={ExerciseDiary} />
+        <Stack.Screen name="ExercisePrograms" component={ExercisePrograms}/>
+        <Stack.Screen name="ChooseProgramPart" component={ChooseProgramPart}/>
+        <Stack.Screen name="DoExercise" component={DoExercise}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
