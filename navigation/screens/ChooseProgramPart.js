@@ -1,15 +1,15 @@
-import { Text, View, FlatList, Button } from "react-native";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Text, View, FlatList, Button, StyleSheet } from "react-native";
 import firebaseConfig from "../../Firebase_config";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
-export default function ChooseProgramPart({navigation}) {
+import { TouchableOpacity } from "react-native";
+export default function ChooseProgramPart({ navigation }) {
   const route = useRoute();
   const { programName } = route.params;
-  const [programExercises, setExercisePrograms] = useState([])
+  const [programExercises, setExercisePrograms] = useState([]);
 
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
@@ -31,24 +31,26 @@ export default function ChooseProgramPart({navigation}) {
         console.error("Error fetching data:", error);
       });
   }, []);
+
   return (
-    <View>
+    <View style={styles.container}>
       {programExercises.length > 0 ? (
         <FlatList
           data={programExercises}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
-            <View style={{ marginVertical: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: "bold" }}>{item}</Text>
-              <Button
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.button}
                 onPress={() =>
                   navigation.navigate("DoExercise", {
                     programName: programName,
-                    programPartName: item, // Napin title parametrina
+                    programPartName: item,
                   })
                 }
-                title={item}
-              />
+              >
+                <Text style={styles.buttonText}>{item}</Text>
+              </TouchableOpacity>
             </View>
           )}
         />
@@ -58,3 +60,27 @@ export default function ChooseProgramPart({navigation}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  buttoncontainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20, // Add marginBottom for space between buttons
+    backgroundColor: "yellow",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  button: {
+    backgroundColor: "yellow",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "black",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});

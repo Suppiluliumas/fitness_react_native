@@ -12,6 +12,8 @@ import ExerciseDiary from "./screens/ExerciseDiary";
 import ExercisePrograms from "./screens/ExercisePrograms";
 import ChooseProgramPart from "./screens/ChooseProgramPart";
 import DoExercise from "./screens/DoExercise";
+import SpecificDiary from "./screens/SpecificDiary";
+import DiaryList from "./screens/DiaryList";
 
 //Screen names
 const homeName = "Home";
@@ -61,6 +63,8 @@ export default function MainContainer() {
         <Stack.Screen name="ExercisePrograms" component={ExercisePrograms}/>
         <Stack.Screen name="ChooseProgramPart" component={ChooseProgramPart}/>
         <Stack.Screen name="DoExercise" component={DoExercise}/>
+        <Stack.Screen name="SpecificDiary" component={SpecificDiary}/>
+        <Stack.Screen name="DiaryList" component={DiaryList}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

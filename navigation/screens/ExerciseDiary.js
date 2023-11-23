@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, Text, View } from "react-native";
-import firebaseConfig from "../../Firebase_config.js";
+import { Text, View, FlatList, Button, TouchableOpacity } from "react-native";
+import { useEffect, useState } from "react";
+import firebaseConfig from "../../Firebase_config";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, DataSnapshot } from "firebase/database";
-
-export default function ExerciseDiary() {
-  const [exercises, setExercises] = useState(null);
+import { getDatabase, ref, get } from "firebase/database";
+import { ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+export default function ExerciseDiary({ navigation }) {
+  const [exercisePrograms, setExercisePrograms] = useState([]);
 
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const exercisesRef = ref(db, "/");
+    const exerciseProgramsRef = ref(db, "exercisePrograms");
 
-    get(exercisesRef)
+    get(exerciseProgramsRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          setExercises(data);
+          // Lista nimistä
+          const programNames = Object.keys(data);
+          setExercisePrograms(programNames);
         } else {
           console.log("No data available");
         }
@@ -27,17 +31,30 @@ export default function ExerciseDiary() {
   }, []);
 
   return (
-    <ScrollView>
-      <View>
-        {exercises ? (
-          <View>
-            <Text>Data from Firebase:</Text>
-            <Text>{JSON.stringify(exercises, null, 2)}</Text>
-          </View>
-        ) : (
-          <Text>Loading data...</Text>
-        )}
-      </View>
-    </ScrollView>
+    <View >
+      {exercisePrograms.length > 0 ? (
+        <FlatList
+          data={exercisePrograms}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <View >
+              <Text >{item}</Text>
+              <Button
+                onPress={() =>
+                  navigation.navigate("SpecificDiary", {
+                    programName: item, // Napin title parametrina
+                  })
+                }
+
+                title={item}
+              />
+            </View>
+          )}
+        />
+      ) : (
+        <Text>Loading data...</Text>
+      )}
+    </View>
   );
 }
+
