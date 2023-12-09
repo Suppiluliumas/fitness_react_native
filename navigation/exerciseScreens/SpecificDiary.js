@@ -5,12 +5,14 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, DataSnapshot } from "firebase/database";
 import { useRoute } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
-import { StyleSheet } from "react-native";
+import {styles} from "../../stylesheet.js";
+import ConvertTime from "../components/ConvertTime.js";
 export default function SpecificDiary({ navigation }) {
   const [diaryEntries, setDiaryEntries] = useState([]);
   const route = useRoute();
   const { programName } = route.params;
-
+  //Convert firebasetimestamp to readable date
+ 
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
@@ -21,20 +23,21 @@ export default function SpecificDiary({ navigation }) {
         if (snapshot.exists()) {
           const data = snapshot.val();
 
-          // Extract program parts with timestamps and flatten the result
+          // Extract program parts with timestamps
           const programPartsArray = Object.entries(data).flatMap(
             ([programPart, programDetails]) =>
-              Object.entries(programDetails).map(([exerciseId, exerciseDetails]) => ({
-                programPart,
-                exerciseId,
-                timestamp: exerciseDetails.timestamp,
-              }))
+              Object.entries(programDetails).map(
+                ([exerciseId, exerciseDetails]) => ({
+                  programPart,
+                  exerciseId,
+                  timestamp: ConvertTime(exerciseDetails.timestamp),
+                })
+              )
           );
 
           // Set the state with program parts
+          console.log(programPartsArray);
           setDiaryEntries(programPartsArray);
-
-         
         } else {
           console.log("No data available");
         }
@@ -45,14 +48,13 @@ export default function SpecificDiary({ navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Exercise Diary Entries:</Text>
+    <View>
       <FlatList
         data={diaryEntries}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={styles.buttonContainer}
+            style={styles.touchable}
             onPress={() =>
               navigation.navigate("DiaryList", {
                 programName: programName,
@@ -63,8 +65,8 @@ export default function SpecificDiary({ navigation }) {
             }
           >
             <View style={styles.container}>
-              <Text style={styles.buttonText}>{item.programPart}</Text>
-              <Text style={styles.buttonText}> Timestamp: {item.timestamp}</Text>
+              <Text style={styles.text}>{item.programPart}</Text>
+              <Text style={styles.text}>{item.timestamp}</Text>
             </View>
           </TouchableOpacity>
         )}
@@ -72,27 +74,4 @@ export default function SpecificDiary({ navigation }) {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 18,
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    backgroundColor: "yellow",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: "black",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-});
+

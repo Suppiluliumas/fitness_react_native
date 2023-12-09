@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Button, ScrollView, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Button,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import firebaseConfig from "../../Firebase_config.js";
 import { initializeApp } from "firebase/app";
 import {
@@ -8,11 +17,10 @@ import {
   push,
   serverTimestamp,
   set,
+  onValue,
 } from "firebase/database";
 import { useRoute } from "@react-navigation/native";
-import { FlatList } from "react-native";
-import { StyleSheet } from "react-native";
-import { onValue } from "firebase/database";
+
 export default function DoExercise() {
   const route = useRoute();
   const { programName } = route.params;
@@ -82,7 +90,7 @@ export default function DoExercise() {
   };
 
   return (
-    <ScrollView>
+    <View style={{ flex: 1 }}>
       <Text>List of Exercises:</Text>
       <FlatList
         data={exercises}
@@ -127,14 +135,12 @@ export default function DoExercise() {
           </View>
         )}
       />
-     <Button
+      <Button
         title="Log exercises"
         onPress={handleLogEntry}
         style={styles.buttonContainer}
       />
-      
-
-    </ScrollView>
+    </View>
   );
 }
 
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
   },
   buttonContainer: {
-    backgroundColor: 'yellow',
+    backgroundColor: "yellow",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,

@@ -4,22 +4,26 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-//Screens
-import ExerciseScreen from "./screens/ExerciseScreen";
-import FoodScreen from "./screens/FoodScreen";
-import HomeScreen from "./screens/HomeScreen";
-import ExerciseDiary from "./screens/ExerciseDiary";
-import ExercisePrograms from "./screens/ExercisePrograms";
-import ChooseProgramPart from "./screens/ChooseProgramPart";
-import DoExercise from "./screens/DoExercise";
-import SpecificDiary from "./screens/SpecificDiary";
-import DiaryList from "./screens/DiaryList";
+//Exercise Screens
+import ExerciseScreen from "./exerciseScreens/ExerciseScreen";
 
-//Screen names
+import HomeScreen from "./exerciseScreens/HomeScreen";
+import ExerciseDiary from "./exerciseScreens/ExerciseDiary";
+import ExercisePrograms from "./exerciseScreens/ExercisePrograms";
+import ChooseProgramPart from "./exerciseScreens/ChooseProgramPart";
+import DoExercise from "./exerciseScreens/DoExercise";
+import SpecificDiary from "./exerciseScreens/SpecificDiary";
+import DiaryList from "./exerciseScreens/DiaryList";
+//Food Screens
+import FoodScreen from "./foodScreens/FoodScreen";
+import RecipeSearch from "./foodScreens/RecipeSearch";
+import FoodDiary from "./foodScreens/FoodDiary";
+import Food_camera from "./components/Food_camera";
+import FoodDiaryList from "./foodScreens/FoodDiaryList";
+//Tab names
 const homeName = "Home";
 const exercisesName = "Exercises";
 const foodsName = "Foods";
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -27,7 +31,7 @@ const Stack = createNativeStackNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-    screenOptions={({ route }) => ({
+      screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -60,11 +64,15 @@ export default function MainContainer() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="ExerciseDiary" component={ExerciseDiary} />
-        <Stack.Screen name="ExercisePrograms" component={ExercisePrograms}/>
-        <Stack.Screen name="ChooseProgramPart" component={ChooseProgramPart}/>
-        <Stack.Screen name="DoExercise" component={DoExercise}/>
-        <Stack.Screen name="SpecificDiary" component={SpecificDiary}/>
-        <Stack.Screen name="DiaryList" component={DiaryList}/>
+        <Stack.Screen name="ExercisePrograms" component={ExercisePrograms} />
+        <Stack.Screen name="ChooseProgramPart" component={ChooseProgramPart} />
+        <Stack.Screen name="DoExercise" component={DoExercise} />
+        <Stack.Screen name="SpecificDiary" component={SpecificDiary} />
+        <Stack.Screen name="DiaryList" component={DiaryList} />
+        <Stack.Screen name="RecipeSearch" component={RecipeSearch} />
+        <Stack.Screen name="FoodDiary" component={FoodDiary} />
+        <Stack.Screen name="Food_camera" component={Food_camera} />
+        <Stack.Screen name="FoodDiaryList" component={FoodDiaryList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,11 @@
-import { Text, View, FlatList, Button } from "react-native";
+import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import firebaseConfig from "../../Firebase_config";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import { styles } from "../../stylesheet";
 export default function ExercisePrograms({ navigation }) {
   const [exercisePrograms, setExercisePrograms] = useState([]);
 
@@ -38,15 +38,16 @@ export default function ExercisePrograms({ navigation }) {
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <View style={{ marginVertical: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: "bold" }}>{item}</Text>
-              <Button
+              <TouchableOpacity
+              style={styles.touchable}
                 onPress={() =>
                   navigation.navigate("ChooseProgramPart", {
                     programName: item, // Napin title parametrina
                   })
                 }
-                title={item}
-              />
+                >
+                <Text style={styles.text}>{item}</Text>
+              </TouchableOpacity>
             </View>
           )}
         />

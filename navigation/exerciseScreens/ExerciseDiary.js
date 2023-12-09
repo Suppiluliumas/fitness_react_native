@@ -1,11 +1,11 @@
-import { Text, View, FlatList, Button, TouchableOpacity } from "react-native";
+import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import firebaseConfig from "../../Firebase_config";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
-import { ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+import {styles} from "../../stylesheet"
+
 export default function ExerciseDiary({ navigation }) {
   const [exercisePrograms, setExercisePrograms] = useState([]);
 
@@ -31,23 +31,23 @@ export default function ExerciseDiary({ navigation }) {
   }, []);
 
   return (
-    <View >
+    <View style={styles.container}>
       {exercisePrograms.length > 0 ? (
         <FlatList
           data={exercisePrograms}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
-            <View >
-              <Text >{item}</Text>
-              <Button
+            <View>
+              <TouchableOpacity
+                style={styles.touchable}
                 onPress={() =>
                   navigation.navigate("SpecificDiary", {
                     programName: item, // Napin title parametrina
                   })
                 }
-
-                title={item}
-              />
+              >
+              <Text style={styles.text}>{item}</Text>
+              </TouchableOpacity>
             </View>
           )}
         />
@@ -57,4 +57,3 @@ export default function ExerciseDiary({ navigation }) {
     </View>
   );
 }
-
