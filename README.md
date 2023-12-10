@@ -6,6 +6,7 @@ Application which helps you to track your health.
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Technologies](#Technologies)
 - [Prerequisites](#Prerequisites)
 - [Installation](#Installation)
 
@@ -21,6 +22,8 @@ Meal Diary: Capture and store images of your meals. Keep a record of your daily 
 
 Recipe Search: Explore a variety of recipes based on searched ingredient.
 
+## Technologies
+Project uses React js native and Firebase DB
 
 ### Prerequisites
 
