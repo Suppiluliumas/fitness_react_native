@@ -49,7 +49,6 @@ export default function Food_camera() {
       Alert.alert("Error adding photo:", error.message);
     }
   };
-  console.log(hasCameraPermission);
   return (
     <View style={{ flex: 1 }}>
       {hasCameraPermission ? (

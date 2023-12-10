@@ -39,7 +39,7 @@ export default function DoExercise() {
       db,
       `exercisePrograms/${programName}/${programPartName}/`
     );
-    // Using a listener to get real-time updates
+    // Kuuntelija jolla saa reaaliaikaiset muutokset
     const firebaseListen = onValue(programExercisesRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -75,12 +75,12 @@ export default function DoExercise() {
       exercises: entries,
     };
 
-    // Push the entry with all exercises under the same timestamp
+    // Pushataan setti jossa on kaikki exercises tiedot saman timestampin alla
     push(diaryRef, entryData)
       .then(() => {
         console.log("Diary entry added successfully");
         Alert.alert("Diary entry added successfully");
-        // Clear DiaryEntry state
+        // Tyhjennetään lopuksi diaryEntry state
         setDiaryEntry({ reps: "", sets: "", weight: "" });
       })
       .catch((error) => {

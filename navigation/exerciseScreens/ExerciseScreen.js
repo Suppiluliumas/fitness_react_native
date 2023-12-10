@@ -30,7 +30,6 @@ export default function ExerciseScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // Adjust the dimensions of the container to make the touchable area larger
     width: 200,
     height: 200,
     justifyContent: "center",
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    // Text styles
     color: "black",
     fontSize: 16,
   },

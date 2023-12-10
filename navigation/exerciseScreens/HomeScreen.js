@@ -4,7 +4,8 @@ import { StyleSheet } from "react-native";
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>This is Homescreen!</Text>
+      <Text>Tämä sovellus on Mobiiliohjelmointkurssin lopputyö</Text>
+      <Text>Github: Suppiluliumas</Text>
     </View>
   );
 }

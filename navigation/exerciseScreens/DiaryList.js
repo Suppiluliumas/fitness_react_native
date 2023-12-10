@@ -12,7 +12,7 @@ export default function DiaryList({ navigation }) {
   const { exerciseId } = route.params;
   const [diaryEntries, setDiaryEntries] = useState();
 
-  //Calculate the weight that is lifted
+  //Lasketaan yhteispaino
   const countLiftedWeight = (exerciseData) => {
     const theWeight =
       parseInt(exerciseData.reps) *

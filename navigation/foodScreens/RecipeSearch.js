@@ -61,11 +61,11 @@ export default function RecipeSearch() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "lightgray",
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
-    marginTop: 200,
+    
   },
   input: {
     width: 200,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   item: {
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+    borderBottomColor: "#fff",
     padding: 16,
   },
 });

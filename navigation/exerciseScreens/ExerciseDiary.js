@@ -18,7 +18,7 @@ export default function ExerciseDiary({ navigation }) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          // Lista nimistä
+          // Lista saliohjelmista 
           const programNames = Object.keys(data);
           setExercisePrograms(programNames);
         } else {

@@ -40,6 +40,15 @@ const diaryListStyles = StyleSheet.create({
     backgroundColor: "black",
     marginVertical: 5,
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  enlargedImage: {
+    width: '100%',
+    height: 300,
+  },
 
 });
 export { styles, diaryListStyles}

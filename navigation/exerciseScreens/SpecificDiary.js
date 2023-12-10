@@ -5,14 +5,13 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, DataSnapshot } from "firebase/database";
 import { useRoute } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
-import {styles} from "../../stylesheet.js";
+import { styles } from "../../stylesheet.js";
 import ConvertTime from "../components/ConvertTime.js";
 export default function SpecificDiary({ navigation }) {
   const [diaryEntries, setDiaryEntries] = useState([]);
   const route = useRoute();
   const { programName } = route.params;
-  //Convert firebasetimestamp to readable date
- 
+
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
@@ -23,7 +22,7 @@ export default function SpecificDiary({ navigation }) {
         if (snapshot.exists()) {
           const data = snapshot.val();
 
-          // Extract program parts with timestamps
+          // Saliohjelmien osat key valueina
           const programPartsArray = Object.entries(data).flatMap(
             ([programPart, programDetails]) =>
               Object.entries(programDetails).map(
@@ -35,7 +34,7 @@ export default function SpecificDiary({ navigation }) {
               )
           );
 
-          // Set the state with program parts
+          // Stateen saliohjelman osat
           console.log(programPartsArray);
           setDiaryEntries(programPartsArray);
         } else {
@@ -74,4 +73,3 @@ export default function SpecificDiary({ navigation }) {
     </View>
   );
 }
-
