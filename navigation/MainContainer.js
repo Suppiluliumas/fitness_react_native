@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Exercise Screens
 import ExerciseScreen from "./exerciseScreens/ExerciseScreen";
-
 import HomeScreen from "./exerciseScreens/HomeScreen";
 import ExerciseDiary from "./exerciseScreens/ExerciseDiary";
 import ExercisePrograms from "./exerciseScreens/ExercisePrograms";

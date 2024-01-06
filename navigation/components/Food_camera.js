@@ -8,8 +8,6 @@ import {
   getStorage,
   ref,
   uploadBytes,
-  getBlob,
-  getDownloadURL,
 } from "firebase/storage";
 
 export default function Food_camera() {
