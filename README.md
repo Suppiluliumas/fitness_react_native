@@ -32,6 +32,3 @@ npm (Node Package Manager)
 Firebase account for data storage
 Expo
 
-### Installation
-Clone the repository
-Install dependencies: npm install
