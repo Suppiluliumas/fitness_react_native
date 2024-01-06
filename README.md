@@ -1,6 +1,6 @@
 # Fitness app
 
-Application which helps you to track your health.
+Application which helps you to track your health. This project was made as part of mobileprogramming course.
 
 ## Table of Contents
 
